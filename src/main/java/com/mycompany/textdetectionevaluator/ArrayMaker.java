@@ -26,7 +26,7 @@ public class ArrayMaker {
         return values;
     }
     
-    public static int[] predictedBBOXes(String fileline){
+    public static int[] getPredictedBBOXes(String fileline){
         String[] tmp1 = fileline.split(",");
         int[] values = new int[tmp1.length];
         for(int i = 0; i < tmp1.length; i++){
@@ -46,7 +46,7 @@ public class ArrayMaker {
                                 if(imagePath.contains("gt_img")){
                                     bboxes.add(ArrayMaker.parseValuesFromGT(line));
                                 }else{
-                                    bboxes.add(ArrayMaker.predictedBBOXes(line));
+                                    bboxes.add(ArrayMaker.getPredictedBBOXes(line));
                                 }
 				// read next line
 				line = reader.readLine();

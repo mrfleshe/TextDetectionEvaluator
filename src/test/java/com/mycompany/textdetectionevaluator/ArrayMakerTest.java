@@ -48,10 +48,10 @@ public class ArrayMakerTest {
     }
     
     @Test
-    public void testPredictedBBOXes() {
+    public void testGetPredictedBBOXes() {
         String input = "27,17,103,22,106,47,30,45";
         int[] expected = {27,17,103,22,106,47,30,45};
-        assertTrue(Arrays.equals(expected, ArrayMaker.predictedBBOXes(input)));
+        assertTrue(Arrays.equals(expected, ArrayMaker.getPredictedBBOXes(input)));
     }
     
     @Test
