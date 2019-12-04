@@ -5,6 +5,10 @@
  */
 package com.mycompany.textdetectionevaluator;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author Matthew Flesher
@@ -41,5 +45,6 @@ public class Evaluator {
     }
     
     public static void main(String[] args){
+        
     }
 }

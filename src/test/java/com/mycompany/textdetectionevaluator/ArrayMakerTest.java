@@ -17,11 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Matthew Flesher
  */
-public class GroundTruthParserTest {
+public class ArrayMakerTest {
     
     static final String TEST_FILE_FOLDER = "src/test/resources/";
     
-    public GroundTruthParserTest() {
+    public ArrayMakerTest() {
     }
     
     @BeforeAll
@@ -41,10 +41,23 @@ public class GroundTruthParserTest {
     }
 
     @Test
-    public void testParseOutWord() {
+    public void testParseValuesFromGT() {
         String input = "27,17,103,22,106,47,30,45,Please";
         int[] expected = {27,17,103,22,106,47,30,45};
-        assertTrue(Arrays.equals(expected, GroundTruthParser.parseOutWord(input)));
+        assertTrue(Arrays.equals(expected, ArrayMaker.parseValuesFromGT(input)));
     }
     
+    @Test
+    public void testPredictedBBOXes() {
+        String input = "27,17,103,22,106,47,30,45";
+        int[] expected = {27,17,103,22,106,47,30,45};
+        assertTrue(Arrays.equals(expected, ArrayMaker.predictedBBOXes(input)));
+    }
+    
+    @Test
+    public void testGetListOfBBoxes() {
+        String testImage = "src/test/resources/icdarEval/gt_img_10.txt";
+        int[] expected = {107,20,159,26,159,48,109,47};
+        assertTrue(Arrays.equals(expected, ArrayMaker.getListOfBBoxes(testImage).get(1)));
+    }
 }
