@@ -11,8 +11,17 @@ package com.mycompany.textdetectionevaluator;
  */
 public class IoUCalculator {
     public static double calculateIoU(int[] boxA, int[] boxB){
-        double score = 0.0;
+        double score = calculateAreaOfOverlap(boxA, boxB) 
+                / calculateAreaOfUnion(boxA, boxB);
         
         return score;
+    }
+    
+    public static double calculateAreaOfOverlap(int[] boxA, int[] boxB){
+        return 0.0;
+    }
+    
+    public static double calculateAreaOfUnion(int[] boxA, int[] boxB){
+        return 0.0;
     }
 }
