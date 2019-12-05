@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class AccuracyCalculator {
 
-    public static final int PIXEL_THRESHOLD = 5;
+    public static final int GOOD_THRESHOLD = 15;
     public final static String DIRECTORY = "src/main/resources/icdarEval/";
     public final static String GT_DIRECTORY = DIRECTORY + "gt/t2";
     public final static String PRED_DIRECTORY = DIRECTORY + "pred/t2";
@@ -27,7 +27,7 @@ public class AccuracyCalculator {
     
     private static int falsePositives = 0;
     private static int truePositives = 0;
-    private static int falseNegatives;
+    private static int falseNegatives = 0;
     private static final int TN = 0;
     
     public static double getAccuracy(){
@@ -54,15 +54,16 @@ public class AccuracyCalculator {
     }
     
     public static void tally(){
-//        Map<String, List<int[]>> gMap = MapMaker.makeMaps(GT_DIRECTORY);
-//        Map<String, List<int[]>> pMap = MapMaker.makeMaps(PRED_DIRECTORY);
-        Map<String, List<int[]>> gMap = MapMaker.makeMaps(TEST_GT);
-        Map<String, List<int[]>> pMap = MapMaker.makeMaps(TEST_PRED);
+        Map<String, List<int[]>> gMap = MapMaker.makeMaps(GT_DIRECTORY);
+        Map<String, List<int[]>> pMap = MapMaker.makeMaps(PRED_DIRECTORY);
+//        Map<String, List<int[]>> gMap = MapMaker.makeMaps(TEST_GT);
+//        Map<String, List<int[]>> pMap = MapMaker.makeMaps(TEST_PRED);
         for(String g : gMap.keySet()){
             String p = g.split("gt_")[1];
 //            System.out.println(p);
             List<int[]> gList = gMap.get(g);
             List<int[]> pList = pMap.get(p);
+            int currentTP = 0;
             for(int i = 0; i < gList.size(); i++){
                 int[] gLine = gList.get(i);
                 for(int j = 0; j < pList.size(); j++){
@@ -70,26 +71,27 @@ public class AccuracyCalculator {
                     if(pLine.length == gLine.length){
                         if(
                                 //https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
-                                //IoUCalculator.calculateIoU(pLine, gLine) > .733
-                                Math.abs(pLine[0] - gLine[0]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[1] - gLine[1]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[2] - gLine[2]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[3] - gLine[3]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[4] - gLine[4]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[5] - gLine[5]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[6] - gLine[6]) < PIXEL_THRESHOLD &&
-                                Math.abs(pLine[7] - gLine[7]) < PIXEL_THRESHOLD
+                                //IoUCalculator.calculateIoU(pLine, gLine) > (GOOD_THRESHOLD*.1) //.5 is considered good
+                                Math.abs(pLine[0] - gLine[0]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[1] - gLine[1]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[2] - gLine[2]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[3] - gLine[3]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[4] - gLine[4]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[5] - gLine[5]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[6] - gLine[6]) < GOOD_THRESHOLD &&
+                                Math.abs(pLine[7] - gLine[7]) < GOOD_THRESHOLD
                                 )
                         {
                             truePositives++;
-                        }else{
-                            falsePositives++;
+                            currentTP++;
                         }
                     }
                 }
             }
+            //set false positives and false negatives after counting true positives
+            falseNegatives = falseNegatives + (gList.size() - currentTP);
+            falsePositives = falsePositives + (pList.size() - currentTP);
         }
-        setFalseNegatives(gMap.keySet().size());
     }
     
     /**
@@ -97,14 +99,6 @@ public class AccuracyCalculator {
      */
     public static int getFalseNegatives() {
         return falseNegatives;
-    }
-
-    /**
-     * @param gMapLength
-     */
-    public static void setFalseNegatives(int gMapLength) {
-        System.out.println("FN: " + gMapLength);
-        falseNegatives = gMapLength - getTruePositives();
     }
     
         /**

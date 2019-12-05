@@ -110,10 +110,10 @@ public class AccuracyCalculatorTest {
         System.out.println("tally");
         AccuracyCalculator.tally();
         double acc = AccuracyCalculator.getAccuracy();
-        System.out.println(acc);
-        System.out.println(AccuracyCalculator.getFalsePositives());
-        System.out.println(AccuracyCalculator.getTruePositives());
-        System.out.println(AccuracyCalculator.getFalseNegatives());
+        System.out.println("Accuracy: " + acc);
+        System.out.println("FP: " + AccuracyCalculator.getFalsePositives());
+        System.out.println("TP: " + AccuracyCalculator.getTruePositives());
+        System.out.println("FN: " + AccuracyCalculator.getFalseNegatives());
 //        assertTrue(AccuracyCalculator.getFalsePositives() == 2);
 //        assertTrue(AccuracyCalculator.getTruePositives() == 1);
 //        assertTrue(AccuracyCalculator.getFalseNegatives() == 2);
