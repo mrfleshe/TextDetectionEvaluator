@@ -17,10 +17,10 @@ import java.util.Map;
  */
 public class AccuracyCalculator {
 
-    public static final int PIXEL_THRESHOLD = 5;
-    public final static String DIRECTORY = "src/test/resources/icdarEval/";
-    public final static String GT_DIRECTORY = DIRECTORY + "gt";
-    public final static String PRED_DIRECTORY = DIRECTORY + "pred";
+    public static final int PIXEL_THRESHOLD = 75;
+    public final static String DIRECTORY = "src/main/resources/icdarEval/";
+    public final static String GT_DIRECTORY = DIRECTORY + "gt/t2";
+    public final static String PRED_DIRECTORY = DIRECTORY + "pred/t2";
     
     private static int falsePositives = 0;
     private static int truePositives = 0;
