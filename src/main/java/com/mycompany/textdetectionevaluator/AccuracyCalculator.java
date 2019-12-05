@@ -64,6 +64,8 @@ public class AccuracyCalculator {
                     int[] pLine = pList.get(j);
                     if(pLine.length == gLine.length){
                         if(
+                                //https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
+                                //IoUCalculator.calculateIoU(pLine, gLine) > .733
                                 Math.abs(pLine[0] - gLine[0]) < PIXEL_THRESHOLD &&
                                 Math.abs(pLine[1] - gLine[1]) < PIXEL_THRESHOLD &&
                                 Math.abs(pLine[2] - gLine[2]) < PIXEL_THRESHOLD &&
