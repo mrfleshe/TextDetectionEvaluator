@@ -56,7 +56,7 @@ public class ArrayMakerTest {
     
     @Test
     public void testGetListOfBBoxes() {
-        String testImage = "src/test/resources/icdarEval/gt_img_10.txt";
+        String testImage = "src/test/resources/icdarEval/gt/gt_img_10.txt";
         int[] expected = {107,20,159,26,159,48,109,47};
         assertTrue(Arrays.equals(expected, ArrayMaker.getListOfBBoxes(testImage).get(1)));
     }

@@ -17,10 +17,13 @@ import java.util.Map;
  */
 public class AccuracyCalculator {
 
-    public static final int PIXEL_THRESHOLD = 75;
+    public static final int PIXEL_THRESHOLD = 5;
     public final static String DIRECTORY = "src/main/resources/icdarEval/";
     public final static String GT_DIRECTORY = DIRECTORY + "gt/t2";
     public final static String PRED_DIRECTORY = DIRECTORY + "pred/t2";
+    
+    public final static String TEST_GT = "src/main/resources/testDir";
+    public final static String TEST_PRED = "src/main/resources/testDirPred";
     
     private static int falsePositives = 0;
     private static int truePositives = 0;
@@ -51,8 +54,10 @@ public class AccuracyCalculator {
     }
     
     public static void tally(){
-        Map<String, List<int[]>> gMap = MapMaker.makeMaps(GT_DIRECTORY);
-        Map<String, List<int[]>> pMap = MapMaker.makeMaps(PRED_DIRECTORY);
+//        Map<String, List<int[]>> gMap = MapMaker.makeMaps(GT_DIRECTORY);
+//        Map<String, List<int[]>> pMap = MapMaker.makeMaps(PRED_DIRECTORY);
+        Map<String, List<int[]>> gMap = MapMaker.makeMaps(TEST_GT);
+        Map<String, List<int[]>> pMap = MapMaker.makeMaps(TEST_PRED);
         for(String g : gMap.keySet()){
             String p = g.split("gt_")[1];
 //            System.out.println(p);
@@ -98,6 +103,7 @@ public class AccuracyCalculator {
      * @param gMapLength
      */
     public static void setFalseNegatives(int gMapLength) {
+        System.out.println("FN: " + gMapLength);
         falseNegatives = gMapLength - getTruePositives();
     }
     

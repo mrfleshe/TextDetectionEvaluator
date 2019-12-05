@@ -113,6 +113,11 @@ public class AccuracyCalculatorTest {
         System.out.println(acc);
         System.out.println(AccuracyCalculator.getFalsePositives());
         System.out.println(AccuracyCalculator.getTruePositives());
+        System.out.println(AccuracyCalculator.getFalseNegatives());
+//        assertTrue(AccuracyCalculator.getFalsePositives() == 2);
+//        assertTrue(AccuracyCalculator.getTruePositives() == 1);
+//        assertTrue(AccuracyCalculator.getFalseNegatives() == 2);
+//        assertTrue(acc < 0.21 && acc > 0.19);
     }
 
 //    /**
