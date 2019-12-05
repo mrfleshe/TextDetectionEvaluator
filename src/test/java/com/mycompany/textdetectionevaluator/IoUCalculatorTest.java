@@ -39,8 +39,9 @@ public class IoUCalculatorTest {
 
     @Test
     public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int[] boxA = {4,8,4,4,4,4,4,4};
+        int[] boxB = {4,8,4,4,4,4,4,4};
+
     }
     
 }
