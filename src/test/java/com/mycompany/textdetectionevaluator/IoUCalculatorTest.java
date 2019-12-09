@@ -5,6 +5,7 @@
  */
 package com.mycompany.textdetectionevaluator;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,9 +37,10 @@ public class IoUCalculatorTest {
     @AfterEach
     public void tearDown() {
     }
-
+//    @Ignore
     @Test
     public void testSomeMethod() {
+        System.out.println("testing IoU");
         int[] boxA = {0,5,5,5,5,0,0,0};
         int[] boxB = {1,6,6,6,6,1,1,1};
         System.out.println(IoUCalculator.calculateIoU(boxA, boxB));
@@ -49,6 +51,16 @@ public class IoUCalculatorTest {
         System.out.println(IoUCalculator.calculateIoU(gt, pred));
         assertTrue(IoUCalculator.calculateIoU(gt, pred) < 1.001
             && IoUCalculator.calculateIoU(gt, pred) > 0.999);
+
+    }
+    
+//    @Ignore
+    @Test
+    public void testGIOU() {
+        System.out.println("testing GIoU");
+        int[] gt = {0,5,5,5,5,0,0,0};
+        int[] pred = {1,6,6,6,6,1,1,1};
+        System.out.println(IoUCalculator.calculateGIoU(gt, pred));
 
     }
     
