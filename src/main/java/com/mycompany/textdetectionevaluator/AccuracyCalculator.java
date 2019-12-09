@@ -1,7 +1,6 @@
 package com.mycompany.textdetectionevaluator;
 
 
-import com.mycompany.textdetectionevaluator.MapMaker;
 import java.util.List;
 import java.util.Map;
 

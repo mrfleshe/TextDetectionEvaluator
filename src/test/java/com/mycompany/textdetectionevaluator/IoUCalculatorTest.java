@@ -39,8 +39,9 @@ public class IoUCalculatorTest {
 
     @Test
     public void testSomeMethod() {
-        int[] boxA = {4,8,4,4,4,4,4,4};
-        int[] boxB = {4,8,4,4,4,4,4,4};
+        int[] boxA = {0,5,5,5,5,0,0,0};
+        int[] boxB = {1,6,6,6,6,1,1,1};
+        System.out.println(IoUCalculator.calculateIoU(boxA, boxB));
 
     }
     
