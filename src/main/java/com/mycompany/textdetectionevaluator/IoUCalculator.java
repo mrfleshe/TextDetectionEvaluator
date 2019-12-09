@@ -39,6 +39,11 @@ public class IoUCalculator {
             double bArea = (boxB[X2] - boxB[X1]) * (boxB[Y2] - boxB[Y1]);
             
             score = intersectionArea / (aArea + bArea - intersectionArea);
+        }else if(boxA[X1] == boxB[X1]
+                && boxA[X2] == boxB[X2]
+                && boxA[Y1] == boxB[Y1]
+                && boxA[Y2] == boxB[Y2]){
+            return 1.0;
         }
         
         return score;

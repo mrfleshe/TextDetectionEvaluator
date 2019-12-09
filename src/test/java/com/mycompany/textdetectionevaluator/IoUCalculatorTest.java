@@ -42,6 +42,13 @@ public class IoUCalculatorTest {
         int[] boxA = {0,5,5,5,5,0,0,0};
         int[] boxB = {1,6,6,6,6,1,1,1};
         System.out.println(IoUCalculator.calculateIoU(boxA, boxB));
+        
+        //814,87,866,69,870,84,818,101
+        int[] gt = {814,87,866,69,870,84,818,101};
+        int[] pred = {814,87,866,69,870,84,818,101};
+        System.out.println(IoUCalculator.calculateIoU(gt, pred));
+        assertTrue(IoUCalculator.calculateIoU(gt, pred) < 1.001
+            && IoUCalculator.calculateIoU(gt, pred) > 0.999);
 
     }
     
